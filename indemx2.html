@@ -1,0 +1,339 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<style>
+
+html{
+	scroll-behavior: smooth;
+}
+hr{
+	border: 0px solid white;
+}
+
+#form1{
+	display: inline-block;
+}
+
+  header{
+    background-color: black;
+    position: fixed;
+	height:10vh;
+  }
+    ul{
+      float: right;
+      list-style-type: none;
+      margin-top: 25px;
+    }
+    ul li{
+      display: inline-block;
+    }
+    ul li a{
+      text-decoration: none;
+      color:#fff;
+      padding: 5px 20px;
+      border: 1px solid #fff;
+      transition: 0.6s ease;
+    }
+    ul li a:hover{
+      background-color: #fff;
+      color: #000;
+    }
+    .logo{
+      float: left;
+      margin-top: -15px;	
+      width: 15%;
+      height: 1%;
+      
+    }
+    .main{
+	max-width:auto;
+	margin: auto;
+}
+
+.footer-basic {
+  padding:40px 0;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.footer-basic ul {
+  padding:0;
+  list-style:none;
+  text-align:center;
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:0;
+}
+
+.footer-basic li {
+  padding:0 10px;
+}
+
+.footer-basic ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-basic ul a:hover {
+  opacity:1;
+}
+
+.footer-basic .social {
+  text-align:center;
+  padding-bottom:25px;
+}
+
+.footer-basic .social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ffffff;
+  margin:0 8px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-basic .social > a:hover {
+  opacity:0.9;
+}
+
+.footer-basic .copyright {
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#ffffff;
+  margin-bottom:0;
+}
+
+
+
+
+</style>
+  <head>
+    <title>Muwie</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      var apikey = "f4c6e08f"
+      $("#movieForm").submit(function(event){
+        event.preventDefault()
+        var movie = $("#movie").val()
+	var year= $("#Year").val()
+        var result=""
+        var url = "http://www.omdbapi.com/?apikey="+apikey
+        $.ajax({
+          method:'GET',
+          url:url+"&t="+movie+"&y="+year+"&plot=full",
+          success:function(data){
+            console.log(data)
+            
+            result=`
+            <img src="${data.Poster}"/>
+            <h2>Title: ${data.Title}</h2>
+	    <h2>${data.Actors}</h2>
+	    <h2>${data.Awards}</h2>
+            <h2>${data.BoxOffice}</h2>
+            <h2>${data.Country}</h2>
+	    <h2>${data.Director}</h2>
+	    <h2>${data.Writer}</h2>
+	    <h2>${data.Genre}</h2>
+	    <h2>${data.Language}</h2>
+	    <h2>${data.Plot}</h2>
+            <h2>${data.Released}</h2>
+            <h2>${data.Runtime}</h2>
+            <h2>${data.Website}</h2>
+            <h2>${data.imdbID}</h2>
+            <h2>${data.imdbRating}</h2>
+            <h2>${data.imdbVotes}</h2>
+	    `
+            $("#result").html(result);
+          }
+        })
+      })
+    })
+  </script>
+</head>
+<body>
+<section>
+	<header>
+	<br>
+          <div class="main">
+	  <img class = "logo" src="https://blogger.googleusercontent.com/img/a/AVvXsEiPYHsj6DE9bxW1aENmWR6WeYxjmCSBml_2iC3-69Hqywyeazt4XsF27KsHiV1_nSTZ6SGGcQupilxtR2-XFmYl0IiL4y9VduAQ4uvtA3HGl5_WYa0wX5q5lFAU9m1hrphXzbGN2dHFzEu1kyTQZnIvpeQubLqBGcD6-SoQJMy6bdjB_l_sWwkPaQYPSQ=s2664">
+            <ul>
+              <li><a href = "#home">Home</a></li>
+              <li><a href = "#aboutus">About Us</a> </li>
+              <li><a href = "#contactus">Contact Us</a> </li>
+              <li><a href = "#otherlinks">Other Links</a> </li>
+            </ul>
+          </div>
+      </header>
+</section>
+<hr>
+<section id="home" class="text-gray-400 bg-gray-900 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-12">
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Muwie</h1>
+      </div>
+<form id="movieForm">
+    <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:px-0 items-end sm:space-x-4 sm:space-y-0 space-y-4">
+      <div class="relative sm:mb-0 flex-grow w-full">
+        
+        <input type="text" id="movie" name="full-name" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+      </div>
+      <div class="relative sm:mb-0 flex-grow w-full">
+        
+        <input type="number" minlength="4" maxlegth="4" id="Year" name="email" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+      </div>
+      <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">SEARCH</button>
+    </div>
+</form>  
+</div>
+<br><br>
+<div id = "result">
+</div>
+</section>
+<hr>
+<section id="aboutus" class="text-gray-400 bg-gray-900 body-font">
+  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+    <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">About Us
+        
+      </h1>
+      <p class="mb-8 leading-relaxed">Muwie is a movie based search engine. Muwie is build by the combination of different APIs. Muwie provide information about movie you search. In this Web, you will find the information of movie you search. Thats all about Muwie, so what are you waiting for, go and hit that search button. </p>
+    </div>
+    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+      <img class="object-cover object-center rounded" alt="hero" src="https://blogger.googleusercontent.com/img/a/AVvXsEhkypgoSIuSalBXUxudIBd6FqBjVLa5DdgwDKw-AGoDKBOBACbEuley9cvED13mDnO6nYKWa-VW-nKbx2QyLCNIqQ00nXqvrer91llVAfGyeUud3r-oO2ViQOU3UiLmMlEpmAra7L3DZWC54yiyzqPp-hRA8AfuIsCup8pacRrz1i1JknEuOjtHY6v9JQ=s720">
+    </div>
+  </div>
+</section>
+<hr>
+<section id="otherlinks" class="text-gray-400 bg-gray-900 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      <div class="p-4 md:w-1/3">
+        <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden">
+          <img id = "disclaimer" class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://blogger.googleusercontent.com/img/a/AVvXsEg9eb2TwaeokBguDH_RdDBhamu3vMNFgn4PqpKMJxlapS6Vwu3_tEiLW-N3w2-Qzn0PKNfMyAtYPpNzBDEI6wHeGVm-iogepLDmmEZljKeKLRH69ghhL8upMlasoqNKg8j5miagCle0Tt0SOeTwA439U-kHvQCeTRhve5zttmIe2LVn3_YwmccusjMxnw=s720" alt="blog">
+          <div class="p-6">
+            
+            <h1 class="title-font text-lg font-medium text-white mb-3">Disclaimer</h1>
+            <p class="leading-relaxed mb-3">The all information you see on the Muwie web is provided by the omdbapi.com. Muwie do not own any of the article or movie.</p>
+          
+          </div>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3">
+        <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden">
+          <img id = "privacypolicy" class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://blogger.googleusercontent.com/img/a/AVvXsEi-UX2QbRaZ5CdyLUq3tyYbcyeh1VFC2OqTYY83m_GaFYe2pAoL27ZTN6pqTw_0mDNwQ6wEaCP32sk2JgGUKbgQhcWYjbDIB-8GXojhXB9a9HX-cnwb4T0CVyamrGJFp3GvaQrgVBiCbidAycIxlFNS1AHgrUPAY1MhSOfab-I7qKtR6O5Ee2ZRW50P4g=s721" alt="blog">
+          <div class="p-6">
+            
+            <h1 class="title-font text-lg font-medium text-white mb-3">Privacy Policy</h1>
+            <p class="leading-relaxed mb-3"><h1>For Privacy Policy of Muwie</p>
+		<p><a href="https://www.privacypolicygenerator.info/live.php?token=I1PKo2oTNg9FPABdTRWz2Yyy3HwYOrsm" target="_blank">Visit Here</a></p>
+            <div class="flex items-center flex-wrap">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3">
+        <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden">
+          <img id = "t&c" class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://blogger.googleusercontent.com/img/a/AVvXsEhVfuWtgn4o3xwrh2iRqK7rje6n5eNdBM9Cqe22pgdXazISW60JfePq_KlK3VCmlCk7nO1G323cEaAkMkFsxmIs83PmMJrKRjTERe4rB2mo3k0joIL45t0Xg79IoDva4DL4Rvdo15P5WTADVrhcSM8OkQjuatUJJt2uhf1QNuNgpoAHcKBzOxXsgZDKYQ=s722" alt="blog">
+          <div class="p-6">
+            
+            <h1 class="title-font text-lg font-medium text-white mb-3">Terms&Condition</h1>
+            <p class="leading-relaxed mb-3"><h1>For Terms&Condition of Muwie.</p>
+	     <p><a href="https://www.termsandconditionsgenerator.com/live.php?token=dFUy1m76rKFS8JBMHANmkOnQqXVqO8Vr" target="_blank">Visit Here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
+<section id= "contactus" class="text-gray-400 bg-gray-900 body-font relative">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-12">
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Contact Us</h1>
+    </div>
+    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+      <div class="flex flex-wrap -m-2">
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="name" class="leading-7 text-sm text-gray-400">Name</label>
+            <input type="text" id="name" name="name" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>
+        </div>
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-400">Email</label>
+            <input type="email" id="email" name="email" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>
+        </div>
+        <div class="p-2 w-full">
+          <div class="relative">
+            <label for="message" class="leading-7 text-sm text-gray-400">Message</label>
+            <textarea id="message" name="message" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+          </div>
+        </div>
+        <div class="p-2 w-full">
+          <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
+        </div>
+        <div class="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
+          <a class="text-indigo-400">muwie4u@gmail.com</a>
+	<span>
+	</span>
+          <span class="inline-flex">
+            
+            
+            <a class="ml-4 text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="ml-4 text-gray-500">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
+<section>
+    <div class="footer-basic">
+        <footer>
+
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#home">Home</a></li>
+                <li class="list-inline-item"><a href="#contactus">Contact</a></li>
+                <li class="list-inline-item"><a href="#aboutus">About</a></li>
+                <li class="list-inline-item"><a href="https://www.termsandconditionsgenerator.com/live.php?token=dFUy1m76rKFS8JBMHANmkOnQqXVqO8Vr" target="_blank">Terms</a></li>
+                <li class="list-inline-item"><a href="https://www.privacypolicygenerator.info/live.php?token=I1PKo2oTNg9FPABdTRWz2Yyy3HwYOrsm" target="_blank">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Muwie © 2021</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</section>
+</body>
+</html>
+
+
+
+
+
